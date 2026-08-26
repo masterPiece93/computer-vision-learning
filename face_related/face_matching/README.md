@@ -32,6 +32,43 @@ When you have one face to be matched against multiple faces
     - various distance calculations ( cosine & euclidian L2)
     - compare `face_recognition` and `Deepface`
 
+#### Script Explaination
+
+- The script contains two Matchers : `FaceRecognitionMatching` and `DeepFaceMatching`
+- Both the matchers have a `match` function with multiple versions , each demonstrating a different feature :
+    - FaceRecognitionMatching
+        > NOTE : the `face_recognition` library is clibrated to perform with Euclidian L2 Norm Distance only .
+        > NOTE : the match threshold for a ideal match is : **0.5**
+        - v1.0 :
+            - Iterative Approach
+            - once source and target encodings are prepared , we will loop over all the source encodings and match each with target encoding and print result
+        - v2.0 :
+            - Vectorized Approach
+            - once source and target encodings are prepared , we will flatten all the source encodings and fit into one single vector of all the encodings.
+
+    - DeepFaceMatching
+        - v1.0
+            - Iterative Approach
+            - once source and target encodings are prepared , we will loop over all the source encodings and match each with target encoding and print result
+            - using `Euclidean Distance Calculation`
+        - v1.1
+            - Iterative Approach
+            - once source and target encodings are prepared , we will loop over all the source encodings and match each with target encoding and print result
+            - using `Cosine Similarity Calculation`
+        - v1.2
+            - Iterative Approach
+            - once source and target encodings are prepared , we will loop over all the source encodings and match each with target encoding and print result
+            - using `Cosine Similarity Calculation` WITH `deepface.verify` call
+        - v1.3
+            - Iterative Approach
+            - once source and target encodings are prepared , we will loop over all the source encodings and match each with target encoding and print result
+            - using `Euclidean Distance Calculation` WITH `deepface.verify` call
+        - v2.0
+            - Vectorized Approach
+            - once source and target encodings are prepared , we will flatten all the source encodings and fit into one single vector of all the encodings.
+            - using `Cosine Similarity Calculation`
+    > NOTE : when you run the script , you get to choose the version with which you wish to execute .
+    
 **Cosine Similarity Formula:**
 
 $$
