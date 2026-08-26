@@ -58,12 +58,12 @@ $$
 \cos({θ}) = \frac{A \cdot B}{\|A\|_2 \|B\|_2} = (\frac{A}{\|A\|_2})\cdot(\frac{B}{\|B\|_2}) = \frac{1}{\|A\|_2 \|B\|_2}(A \cdot B)
 $$
 
-Euclidean Distance - Formula Breakdown :
+**Euclidean Distance Formula:**
 - 2D Space: $(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2})$
 - 3D Space: $(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2})$
 - N-Dimensional Space: $(d = \sqrt{\sum_{i=1}^{n} (q_i - p_i)^2})$
 
-With L2 Normalization
+With L2 Normalization :
 - $(L_{2})$ Norm (Length of a single vector $(x$)):
 $$
 \|{}x\|{}_{2}=\sqrt{x_{1}^{2}+x_{2}^{2}+\dots +x_{n}^{2}}
@@ -92,7 +92,7 @@ Key Breakdown
 - Sum Up: You add all the squared values together.
 - Square Root: You take the final square root to get the physical distance.
 
-#### Commands
+#### Script Commands
 
 first you must have encodings generated against which you will run the face match .
 
@@ -118,11 +118,26 @@ first you must have encodings generated against which you will run the face matc
 
 Generation :
 
--
+-   deepface
+    ```sh
+    python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e deepface --deepface_model Facenet512 --subfolder
+    ```
+
+-   deepface
+    ```sh
+    python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e deepface --deepface_model Facenet --subfolder
+    ```
+
+-   deepface
+    ```sh
+    python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e deepface --deepface_model ArcFace --subfolder
+    ```
+
+-   face_recognition
     ```sh
     python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e face_recognition --face_recognition_model cnn --subfolder
     ```
--
+-   face_recognition
     ```sh
     python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e face_recognition --face_recognition_model hog --subfolder
     ```
