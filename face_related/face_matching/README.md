@@ -2,6 +2,25 @@
 
 ## One Face - Multiple Targets
 
+
+<details>
+  <summary>Package Requirements</summary>
+
+  <!-- This blank line is required! -->
+  ```bash
+  Package                Version
+  ---------------------- ---------
+  deepface               0.0.100
+  face-recognition       1.3.0
+  opencv-python-headless 4.14.0.94
+  pip                    24.0
+  PySocks                1.7.1
+  tf_keras               2.21.0
+  ```
+</details>
+
+<br>
+
 When you have one face to be matched against multiple faces
 
 ### [one_target__multiple_reference_encodings.py](./one_target__multiple_reference_encodings.py)
