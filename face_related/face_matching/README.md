@@ -99,53 +99,52 @@ first you must have encodings generated against which you will run the face matc
 
 Generation :
 
-```sh
-python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e face_recognition --face_recognition_model cnn --subfolder
-```
-
-```sh
-python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e face_recognition --face_recognition_model hog --subfolder
-```
+-
+    ```sh
+    python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e face_recognition --face_recognition_model cnn --subfolder
+    ```
+-
+    ```sh
+    python3 -m store.generate_encodings -s ./store/raw_images/ -t ./store/encodings/ -e face_recognition --face_recognition_model hog --subfolder
+    ```
 
 <br>
 
 Matching :
+- #1
+    `deepface : Facenet512` | `tolerance : 0.4` | `version : 2.0` | `scoring : cosine similarity` |
+    
+    ```bash
+    python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_images/10.jpg --reference_encodings ./store/encodings/deepface/Facenet512/ --tolerance 0.4 --version 2.0 --matcher deepface --deepface_model Facenet512
+    ```
+    - uses existing encodings : `./store/encodings/face_recognition/hog/`
+    - uses existing target : `./store/raw_images/10.jpg`
+    - with version `2.0` , the similarity score is used , so `tolerance` caps the similarity score not distance .
+    
+    <br>
+    <br>
+    
+    
+- #2
+    `face_recognition : hog` | `tolerance : 0.5` | `version : 2.0` | `scoring : L_2 Norm Distance` |
+    
+    ```bash
+    python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_images/10.jpg --reference_encodings ./store/encodings/face_recognition/hog/ --tolerance 0.5 --version 2.0 --matcher face_recognition --face_recognition_model hog
+    ```
+    - uses existing encodings : `./store/encodings/face_recognition/hog/`
+    - uses existing target : `./store/raw_images/10.jpg`
+    - for all face_recognition euclidian $(L_{2})$ Norm Distance score is used , so `tolerance` caps the distance score and not the similarity .
+    
 
-
-#1
-`deepface : Facenet512` | `tolerance : 0.4` | `version : 2.0` | `scoring : cosine similarity` |
-
-```bash
-python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_images/10.jpg --reference_encodings ./store/encodings/deepface/Facenet512/ --tolerance 0.4 --version 2.0 --matcher deepface --deepface_model Facenet512
-```
-- uses existing encodings : `./store/encodings/face_recognition/hog/`
-- uses existing target : `./store/raw_images/10.jpg`
-- with version `2.0` , the similarity score is used , so `tolerance` caps the similarity score not distance .
-
-<br>
-<br>
-
-
-#2
-`face_recognition : hog` | `tolerance : 0.5` | `version : 2.0` | `scoring : L_2 Norm Distance` |
-
-```bash
-python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_images/10.jpg --reference_encodings ./store/encodings/face_recognition/hog/ --tolerance 0.5 --version 2.0 --matcher face_recognition --face_recognition_model hog
-```
-- uses existing encodings : `./store/encodings/face_recognition/hog/`
-- uses existing target : `./store/raw_images/10.jpg`
-- for all face_recognition euclidian $(L_{2})$ Norm Distance score is used , so `tolerance` caps the distance score and not the similarity .
-
-
-#3
-`face_recognition : cnn` | `tolerance : 0.5` | `version : 2.0` | `scoring : L_2 Norm Distance` |
-
-```bash
-python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_images/10.jpg --reference_encodings ./store/encodings/face_recognition/cnn/ --tolerance 0.4 --version 2.0 --matcher face_recognition --face_recognition_model cnn
-```
-- uses existing encodings : `./store/encodings/face_recognition/cnn/`
-- uses existing target : `./store/raw_images/10.jpg`
-- for all face_recognition euclidian $(L_{2})$ Norm Distance score is used , so `tolerance` caps the distance score and not the similarity .
+- #3
+    `face_recognition : cnn` | `tolerance : 0.5` | `version : 2.0` | `scoring : L_2 Norm Distance` |
+    
+    ```bash
+    python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_images/10.jpg --reference_encodings ./store/encodings/face_recognition/cnn/ --tolerance 0.4 --version 2.0 --matcher face_recognition --face_recognition_model cnn
+    ```
+    - uses existing encodings : `./store/encodings/face_recognition/cnn/`
+    - uses existing target : `./store/raw_images/10.jpg`
+    - for all face_recognition euclidian $(L_{2})$ Norm Distance score is used , so `tolerance` caps the distance score and not the similarity .
 
 
 ---
