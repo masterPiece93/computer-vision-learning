@@ -15,7 +15,8 @@ When you have one face to be matched against multiple faces
 
 **Cosine Similarity Formula:**
 
-$$\text{Cosine Similarity} = \frac{A \cdot B}{\|A\|_2 \|B\|_2} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \times \sqrt{\sum_{i=1}^{n} B_i^2}}
+$$
+\text{Cosine Similarity} = \frac{A \cdot B}{\|A\|_2 \|B\|_2} = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \times \sqrt{\sum_{i=1}^{n} B_i^2}}
 $$
 
 Sample Run
@@ -32,12 +33,13 @@ Sample Run
         > $24 \div 25 = \mathbf{0.96}$
 - The vectors point in almost the exact same direction because 0.96 is very close to 1.
 
-Cosine Similarity - Formula Breakdown
+Cosine Similarity - Formula Breakdown :
+
 $$
 \cos({θ}) = \frac{A \cdot B}{\|A\|_2 \|B\|_2} = (\frac{A}{\|A\|_2})\cdot(\frac{B}{\|B\|_2}) = \frac{1}{\|A\|_2 \|B\|_2}(A \cdot B)
 $$
 
-Euclidian Distance - Formula Breakdown
+Euclidean Distance - Formula Breakdown :
 - 2D Space: $(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2})$
 - 3D Space: $(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2})$
 - N-Dimensional Space: $(d = \sqrt{\sum_{i=1}^{n} (q_i - p_i)^2})$
@@ -152,7 +154,7 @@ python3 one_target__multiple_reference_encodings.py --target_image ./store/raw_i
 
 ## Point to Note :
 
-Question : You will notice that the test run with both `face_recognition:hog` and `` generate exact same results , but if `cnn` is better tha `hog` then there must be difference in reults , why not so ??
+**Question 1** : You will notice that the test run with both `face_recognition:hog` and `face_recognition:cnn` generate exact same results , but if `cnn` is better tha `hog` then there must be difference in reults , why not so ??
 
 <details>
   <summary>Answer</summary>
@@ -173,7 +175,7 @@ When will the results actually differ?
 
 - You will only notice a difference between the two models in more challenging scenarios:
 
-    1. Side profiles or tilted angles: The hog model will likely fail to find the face entirely (returning an empty list), while the cnn model will successfully locate it and generate a match.
+    1. **Side profiles or tilted angles** : The hog model will likely fail to find the face entirely (returning an empty list), while the cnn model will successfully locate it and generate a match.
 
-    2. Slightly shifted crops: If an image is blurry or dark, `cnn` and `hog` might calculate slightly different bounding box sizes. The minor variation in the cropped face pixels will lead to slightly different embedding numbers, resulting in marginally different matching distances.
+    2. **Slightly shifted crops** : If an image is blurry or dark, `cnn` and `hog` might calculate slightly different bounding box sizes. The minor variation in the cropped face pixels will lead to slightly different embedding numbers, resulting in marginally different matching distances.
 </details>
